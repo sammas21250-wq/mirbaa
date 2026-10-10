@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#090604"><title>MIRBAA — مِرباع</title>
+<style>
+:root{--gold:#e8b85d;--gold2:#ffe2a2;--cream:#fff8e9;--ink:#0a0806;--panel:#0d0c0a;--felt:#07533d;--red:#c9232e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:#050403;color:#fff;font-family:Tahoma,Arial,sans-serif;overflow:hidden}
+button{font-family:inherit}.app{width:min(100%,560px);height:100svh;margin:auto;position:relative;overflow:hidden;background:#090604}
+.screen{position:absolute;inset:0;display:none}.screen.on{display:block}
+/* HOME */
+.home{background:
+radial-gradient(circle at 50% 17%,#5d3a1d99,transparent 28%),
+linear-gradient(#130d08aa,#070504ee),
+repeating-linear-gradient(90deg,#27150c 0 35px,#321b0f 35px 70px)}
+.home:before{content:"";position:absolute;inset:auto -20% -10% -20%;height:42%;background:repeating-radial-gradient(ellipse at center,#9c2d30 0 14px,#5e171b 15px 31px,#c28a44 32px 35px);transform:perspective(500px) rotateX(55deg);transform-origin:bottom;opacity:.65}
+.homeTop{position:relative;z-index:3;padding:calc(env(safe-area-inset-top) + 15px) 18px;display:flex;justify-content:space-between}.roundBtn{width:45px;height:45px;border-radius:15px;border:1px solid #ffffff17;background:#0b0a08dd;color:#eee;font-size:18px}
+.hero{position:relative;z-index:3;text-align:center;padding-top:5vh}.logo{width:88px;height:88px;margin:auto;border-radius:28px;background:linear-gradient(145deg,#f2ca73,#a4661e);display:grid;place-items:center;color:#171006;font-size:52px;box-shadow:0 12px 40px #000b}.hero h1{font-size:48px;color:#f2c66f;margin:14px 0 0}.hero .en{letter-spacing:8px;color:#cbb68d;font-size:12px}.hero p{color:#c9bba2;font-size:12px;margin:15px 25px}
+.profile{position:absolute;z-index:4;left:18px;right:18px;bottom:20px;padding:13px;border-radius:22px;background:#0a0907e8;border:1px solid #ffffff13;box-shadow:0 12px 35px #000b}.pRow{display:flex;align-items:center;gap:10px}.miniAvatar{width:49px;height:49px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#74533a,#1c130d);border:2px solid var(--gold);display:grid;place-items:center;font-weight:bold}.pRow b{display:block}.pRow small{color:#aa9b82}.coins{margin-right:auto;color:var(--gold2)}
+.mainBtns{position:relative;z-index:4;width:84%;margin:24px auto 0;display:grid;gap:9px}.primary,.secondary{border-radius:18px;padding:15px;border:1px solid #ffffff12;font-size:16px}.primary{background:linear-gradient(#efc269,#ad6d20);color:#171006;font-weight:bold;box-shadow:0 9px 22px #0009}.secondary{background:#0b1511dc;color:#fff}
+/* LOBBY */
+.lobby{background:linear-gradient(#17100a,#080604)}.bar{height:80px;padding:calc(env(safe-area-inset-top) + 8px) 14px 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #ffffff0d;background:#0b0806}.bar h2{margin:0;color:#f2c76f}.bar .back{margin-left:auto}
+.tabs{display:flex;gap:7px;padding:12px}.tabs button{flex:1;padding:10px;border-radius:12px;border:1px solid #ffffff10;background:#11100e;color:#bfb29d}.tabs .active{background:#503719;color:#f6d78f;border-color:#d9a64f55}
+.rooms{padding:0 12px 90px;overflow:auto;height:calc(100% - 132px)}.roomCard{height:116px;margin-bottom:10px;border-radius:22px;overflow:hidden;position:relative;border:1px solid #ffffff12;background:
+linear-gradient(90deg,#071812ee,#07181299),
+radial-gradient(circle at 80% 40%,#1a845f,#064332 55%);box-shadow:0 8px 18px #0007}.roomCard:nth-child(2){background:linear-gradient(90deg,#17100eee,#17100e99),radial-gradient(circle at 80% 40%,#a85d2e,#402010 55%)}.roomCard:nth-child(3){background:linear-gradient(90deg,#0e0d18ee,#0e0d1899),radial-gradient(circle at 80% 40%,#514b91,#211d42 55%)}.roomInfo{position:absolute;right:15px;top:14px}.roomInfo b{font-size:17px}.roomInfo p{margin:5px 0;color:#c8baa3;font-size:10px}.join{position:absolute;left:14px;bottom:14px;border:0;border-radius:12px;padding:10px 17px;background:linear-gradient(#efc269,#ad6d20);font-weight:bold;color:#171006}
+.bottomNav{position:absolute;bottom:0;left:0;right:0;height:74px;padding-bottom:env(safe-area-inset-bottom);display:flex;background:#090806f4;border-top:1px solid #ffffff10}.bottomNav button{flex:1;border:0;background:none;color:#a89b85;font-size:11px}.bottomNav .sel{color:#f0c46d}
+/* GAME */
+.game{background:radial-gradient(circle at 50% 0,#5d3b20,#130c07 38%,#050403 75%)}
+.gameTop{position:absolute;z-index:70;top:0;left:0;right:0;height:76px;padding:calc(env(safe-area-inset-top) + 7px) 10px 5px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(#070504e8,transparent)}
+.gameLogo{display:flex;align-items:center;gap:7px;color:#f0c36c;font-weight:bold}.gameLogo i{width:35px;height:35px;border-radius:11px;background:linear-gradient(#edc36b,#a96920);color:#171006;display:grid;place-items:center;font-style:normal;font-size:20px}
+.gameTop button{width:36px;height:36px;border-radius:11px;border:1px solid #ffffff12;background:#0b0b09dd;color:#eee}
+.majlisFloor{position:absolute;inset:70px 0 0;background:
+linear-gradient(#0000 60%,#0009),
+repeating-linear-gradient(90deg,#28160d 0 32px,#341c0f 32px 64px)}
+.rug{position:absolute;left:-20%;right:-20%;bottom:-9%;height:43%;background:repeating-radial-gradient(ellipse at center,#9c2b30 0 14px,#61181c 15px 30px,#bd8240 31px 34px);transform:perspective(550px) rotateX(62deg);transform-origin:bottom;opacity:.65}
+.lamp{position:absolute;top:16%;width:26px;height:92px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle,#ffe9a0,#d58d2c 45%,#4b2a13 72%);box-shadow:0 0 35px #ffc45b66}.l1{left:7px}.l2{right:7px}
+.table{position:absolute;z-index:10;left:50%;top:52%;transform:translate(-50%,-50%);width:91%;height:69%;border-radius:44% / 18%;padding:12px;background:linear-gradient(145deg,#b5783e,#4b2815 35%,#c08a4c 63%,#3a1d0f);box-shadow:0 25px 45px #000d,inset 0 2px #f7ce9355}
+.felt{height:100%;position:relative;overflow:hidden;border-radius:43% / 17%;border:4px solid #29170e;background:radial-gradient(ellipse at 50% 42%,#0b7957,#07523c 56%,#033426);box-shadow:inset 0 0 75px #001b13}
+.felt:after{content:"";position:absolute;inset:0;opacity:.1;background-image:radial-gradient(#fff .55px,transparent .7px);background-size:6px 6px}
+.water{position:absolute;z-index:1;top:45%;width:100%;text-align:center;font-size:45px;font-weight:bold;color:#ffffff07;transform:rotate(-8deg)}
+.scoreHud{position:absolute;z-index:50;top:10px;left:8%;right:8%;display:flex;justify-content:space-between}.scores{display:flex;direction:ltr;gap:4px}.scores div{width:55px;padding:5px;border-radius:13px;background:#061711e8;text-align:center;border:1px solid #ffffff12}.scores small{display:block;font-size:9px;color:#c7b99f}.scores strong{font-size:20px}.dealInfo{padding:6px 9px;border-radius:13px;background:#061711e8;border:1px solid #ffffff12;font-size:9px;line-height:1.5}.dealInfo b{color:var(--gold2)}
+.seat{position:absolute;z-index:45;width:82px;text-align:center}.avatar{width:55px;height:55px;margin:auto;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 25%,#735039,#1b120c 64%);border:3px solid #a9783d;box-shadow:0 7px 16px #000b;font-weight:bold}.seat.active .avatar{border-color:#ffe09b;box-shadow:0 0 0 4px #f0c35e20,0 0 24px #ffc65a88}.lvl{position:absolute;margin:-17px 0 0 48px;width:20px;height:20px;border-radius:50%;background:#12100d;border:1px solid var(--gold);font-size:8px;display:grid;place-items:center}.seatName{font-size:11px;margin-top:3px}.partner{font-size:8px;color:#c1b399}.north{top:48px;left:50%;transform:translateX(-50%)}.east{right:0;top:42%;transform:translateY(-50%)}.west{left:0;top:42%;transform:translateY(-50%)}.south{bottom:5px;left:50%;transform:translateX(-50%)}
+.backs{display:flex;direction:ltr;justify-content:center;margin-top:3px}.backs i{width:13px;height:27px;margin-left:-6px;border-radius:3px;border:1px solid #dfb45f;background:repeating-linear-gradient(135deg,#8a1c23 0 4px,#d5a048 4px 7px)}
+.stage{position:absolute;z-index:35;left:50%;top:43%;transform:translate(-50%,-50%);width:58%;height:205px}.turn{position:absolute;left:50%;top:0;transform:translateX(-50%);white-space:nowrap;padding:6px 10px;border-radius:12px;background:#061711e8;border:1px solid #ffffff12;font-size:9px}
+.market,.played{background:linear-gradient(145deg,#fffef9,#eee4d0);border:1px solid #d5c6aa;color:#17110d;box-shadow:0 7px 16px #000a;font-weight:bold}.market{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:84px;border-radius:9px;display:grid;place-items:center;font-size:18px}.played{position:absolute;width:49px;height:72px;border-radius:8px;display:grid;place-items:center;font-size:16px;animation:throw .2s ease-out}@keyframes throw{from{opacity:.2;scale:.65}to{opacity:1;scale:1}}.p0{left:50%;bottom:0;transform:translateX(-50%)}.p1{right:0;top:52%;transform:translateY(-50%) rotate(-6deg)}.p2{left:50%;top:28px;transform:translateX(-50%)}.p3{left:0;top:52%;transform:translateY(-50%) rotate(6deg)}.red{color:#bd2130!important}
+.bid{position:absolute;z-index:55;left:50%;top:60%;transform:translateX(-50%);display:flex;gap:5px;direction:rtl}.bid button{min-width:62px;padding:10px 8px;border-radius:12px;border:1px solid #ffffff10;background:#081713;color:#fff}.bid .gold{background:linear-gradient(#edbd62,#ac6c20);color:#171006;font-weight:bold}.bid .cream{background:#f4ecdd;color:#171006}
+.handDock{position:absolute;z-index:60;left:7%;right:7%;bottom:43px;height:115px;border-radius:50% 50% 16px 16px / 20px 20px 16px 16px;background:linear-gradient(#0000,#04150fb8 40%,#03110ddd);border-bottom:1px solid #ffffff0d}.hand{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);width:100%;height:110px;display:flex;direction:ltr;justify-content:center;align-items:flex-end;pointer-events:none}.card{pointer-events:auto;width:56px;height:90px;margin-left:-8px;border:1px solid #d6c8ad;border-radius:9px;background:linear-gradient(145deg,#fffef9,#ede3d0);color:#17110d;box-shadow:0 7px 14px #000a;font:bold 17px Tahoma;transition:.15s}.card:nth-child(1){transform:rotate(-10deg) translateY(9px)}.card:nth-child(2){transform:rotate(-7deg) translateY(5px)}.card:nth-child(3){transform:rotate(-4deg) translateY(2px)}.card:nth-child(4){transform:rotate(-1deg)}.card:nth-child(5){transform:rotate(2deg)}.card:nth-child(6){transform:rotate(5deg) translateY(2px)}.card:nth-child(7){transform:rotate(8deg) translateY(5px)}.card:nth-child(8){transform:rotate(11deg) translateY(9px)}.card:active{transform:translateY(-18px)!important;z-index:90}.card.disabled{opacity:.35;filter:grayscale(.55)}
+.actionRail{position:absolute;z-index:70;right:9px;bottom:10px;display:flex;gap:6px}.actionRail button{height:44px;border-radius:14px;border:1px solid #ffffff14;background:#0b1511e8;color:#eee;padding:0 12px}.actionRail .qaid{background:linear-gradient(#d22a34,#a8171e);min-width:66px}.toast{position:absolute;z-index:70;left:10px;bottom:10px;max-width:190px;padding:7px 10px;border-radius:13px;background:#061711e8;border:1px solid #ffffff12;font-size:9px}
+/* sheet */
+.sheet{display:none;position:absolute;z-index:100;inset:0;background:#000a;align-items:flex-end}.sheet.on{display:flex}.panel{width:100%;padding:18px 15px calc(18px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;background:linear-gradient(#1b1510,#090806);border-top:1px solid #ffffff18}.panel h2{margin:0;color:#f2c76f}.panel p{font-size:11px;color:#b8aa91}.panelGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.panelGrid button,.close{padding:13px;border-radius:13px;font:13px Tahoma}.panelGrid button{background:#111612;border:1px solid #ffffff12;color:#eee}.close{width:100%;margin-top:9px;border:0;background:linear-gradient(#e7b85d,#aa6a1e);font-weight:bold}
+@media(max-width:390px){.table{width:94%}.card{width:51px;height:86px}.stage{width:63%}}
+</style>
+</head><body><div class="app">
+<!-- HOME -->
+<section class="screen home on" id="home"><div class="homeTop"><button class="roundBtn">⚙</button><button class="roundBtn">♪</button></div>
+<div class="hero"><div class="logo">♠</div><h1>مِرباع</h1><div class="en">MIRBAA</div><p>مجلس البلوت • العب مع أصحابك ونافس على الصدارة</p>
+<div class="mainBtns"><button class="primary" onclick="show('lobby')">دخول المجالس</button><button class="secondary" onclick="startGame()">لعب سريع</button></div></div>
+<div class="profile"><div class="pRow"><div class="miniAvatar">م</div><div><b>محمد</b><small>المستوى 13 • مبتدئ</small></div><div class="coins">◈ 2,450</div></div></div></section>
+<!-- LOBBY -->
+<section class="screen lobby" id="lobby"><header class="bar"><h2>المجالس</h2><button class="roundBtn back" onclick="show('home')">‹</button></header>
+<div class="tabs"><button class="active">عام</button><button>خاص</button><button>الأصدقاء</button></div>
+<div class="rooms"><div class="roomCard"><div class="roomInfo"><b>مجلس النخبة</b><p>بلوت • صن وحكم • 3/4 لاعبين</p></div><button class="join" onclick="startGame()">دخول</button></div>
+<div class="roomCard"><div class="roomInfo"><b>ديوانية الليل</b><p>بلوت • مجلس • 2/4 لاعبين</p></div><button class="join" onclick="startGame()">دخول</button></div>
+<div class="roomCard"><div class="roomInfo"><b>مجلس التحدي</b><p>بلوت • تنافسي • 3/4 لاعبين</p></div><button class="join" onclick="startGame()">دخول</button></div></div>
+<nav class="bottomNav"><button class="sel">⌂<br>المجالس</button><button>♚<br>التصنيف</button><button>♟<br>الأصدقاء</button><button>◆<br>المتجر</button></nav></section>
+<!-- GAME -->
+<section class="screen game" id="game"><div class="majlisFloor"><div class="rug"></div><div class="lamp l1"></div><div class="lamp l2"></div></div>
+<header class="gameTop"><div class="gameLogo"><i>♠</i> مِرباع</div><div><button onclick="toggleSheet()">☰</button> <button onclick="toastMsg('الصوت مفعّل')">♪</button></div></header>
+<div class="table"><div class="felt"><div class="water">مِرباع</div>
+<div class="scoreHud"><div class="scores"><div><small>لنا</small><strong id="us">0</strong></div><div><small>لهم</small><strong id="them">0</strong></div></div><div class="dealInfo"><b id="contractText">السوق</b><br><span id="roundText">الصكة 1 • الأكلة 1/8</span></div></div>
+<div class="seat north" id="seat2"><div class="avatar">ن</div><span class="lvl">12</span><div class="seatName">ناصر</div><div class="partner">شريكك</div><div class="backs" id="b2"></div></div>
+<div class="seat east" id="seat1"><div class="avatar">ف</div><span class="lvl">12</span><div class="seatName">فهد</div><div class="backs" id="b1"></div></div>
+<div class="seat west" id="seat3"><div class="avatar">س</div><span class="lvl">11</span><div class="seatName">سالم</div><div class="backs" id="b3"></div></div>
+<div class="stage"><div class="turn" id="turnText"></div><div class="market" id="market"></div><div id="trick"></div></div>
+<div class="bid" id="bid"><button class="gold" onclick="buy('حكم')">حكم</button><button class="cream" onclick="buy('صن')">صن</button><button onclick="buy('بس')">بس</button></div>
+<div class="handDock"><div class="hand" id="hand"></div></div>
+<div class="seat south active" id="seat0"><div class="avatar">أنت</div><span class="lvl">13</span><div class="seatName">محمد</div></div>
+<div class="actionRail"><button class="qaid" onclick="toastMsg('⚠ تم تسجيل طلب قيد')">⚠ قيد</button><button onclick="toastMsg('المحادثة ستضاف في النسخة الشبكية')">☏</button></div><div class="toast" id="toast">مرحبًا بك في مجلس مِرباع</div>
+</div></div></section>
+<div class="sheet" id="sheet"><div class="panel"><h2>المجلس</h2><p>خيارات المباراة</p><div class="panelGrid"><button>الإعدادات</button><button>سجل اللعب</button><button>اللاعبون</button><button onclick="show('lobby');toggleSheet()">مغادرة المجلس</button></div><button class="close" onclick="toggleSheet()">العودة للعب</button></div></div>
+</div>
+<script>
+const S=['♠','♥','♦','♣'],R=['7','8','9','10','J','Q','K','A'],N=['محمد','فهد','ناصر','سالم'];
+let deck=[],hands=[[],[],[],[]],turn=0,phase='buy',marketCard=null,contract='',trump=null,trick=[],trickNo=1;
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('on'));document.getElementById(id).classList.add('on')}
+function startGame(){show('game');setup()}
+function shuffle(a){for(let i=a.length-1;i;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
+function setup(){let id=0;deck=[];hands=[[],[],[],[]];turn=0;phase='buy';contract='';trump=null;trick=[];trickNo=1;for(const s of S)for(const r of R)deck.push({id:'c'+(++id),s,r});shuffle(deck);for(let n=0;n<5;n++)for(let p=0;p<4;p++)hands[p].push(deck.pop());marketCard=deck.pop();render()}
+const red=c=>c.s==='♥'||c.s==='♦';
+function legal(p){if(!trick.length)return hands[p].slice();const lead=trick[0].c.s,same=hands[p].filter(c=>c.s===lead);return same.length?same:hands[p].slice()}
+function render(){for(let p=1;p<4;p++)document.getElementById('b'+p).innerHTML=hands[p].map(()=>'<i></i>').join('');
+const allowed=new Set(legal(0).map(c=>c.id));hand.innerHTML=hands[0].map(c=>`<button class="card ${red(c)?'red':''} ${phase==='play'&&turn===0&&!allowed.has(c.id)?'disabled':''}" onclick="play('${c.id}')">${c.s}<br>${c.r}</button>`).join('');
+market.style.display=phase==='buy'?'grid':'none';market.innerHTML=marketCard?`<span class="${red(marketCard)?'red':''}">${marketCard.s}<br>${marketCard.r}</span>`:'';
+bid.style.display=phase==='buy'&&turn===0?'flex':'none';contractText.textContent=phase==='buy'?'السوق':contract+(trump?' '+trump:'');roundText.textContent=`الصكة 1 • الأكلة ${trickNo}/8`;turnText.textContent=phase==='buy'?`الشراء • دور ${N[turn]}`:`${contract}${trump?' '+trump:''} • دور ${N[turn]}`;
+for(let p=0;p<4;p++)document.getElementById('seat'+p).classList.toggle('active',p===turn);document.getElementById('trick').innerHTML=trick.map(x=>`<div class="played p${x.p} ${red(x.c)?'red':''}">${x.c.s}<br>${x.c.r}</div>`).join('')}
+function toastMsg(t){toast.textContent=t}function next(){turn=(turn+1)%4;render()}
+function buy(x){if(phase!=='buy'||turn!==0)return;if(x==='بس'){toastMsg('محمد: بس');next();return setTimeout(botBuy,400)}contract=x;trump=x==='حكم'?marketCard.s:null;phase='play';hands[0].push(marketCard);marketCard=null;for(let p=0;p<4;p++)while(hands[p].length<8&&deck.length)hands[p].push(deck.pop());turn=0;toastMsg('تم الشراء • '+contract+(trump?' '+trump:''));render()}
+function botBuy(){if(phase!=='buy'||turn===0)return;toastMsg(N[turn]+': بس');next();if(turn!==0)setTimeout(botBuy,380)}
+function play(id){if(phase!=='play'||turn!==0)return;const a=legal(0);if(!a.some(c=>c.id===id)){toastMsg('لا يمكن: معك من نفس النوع');return}let i=hands[0].findIndex(c=>c.id===id),c=hands[0].splice(i,1)[0];trick.push({p:0,c});next();setTimeout(botPlay,340)}
+function botPlay(){if(phase!=='play'||turn===0)return;const p=turn,a=legal(p),c=a[Math.floor(Math.random()*a.length)],i=hands[p].findIndex(x=>x.id===c.id);hands[p].splice(i,1);trick.push({p,c});next();if(trick.length===4)setTimeout(()=>{trick=[];trickNo=Math.min(8,trickNo+1);turn=0;toastMsg('انتهت الأكلة');render()},560);else if(turn!==0)setTimeout(botPlay,340)}
+function toggleSheet(){sheet.classList.toggle('on')}
+</script></body></html>
