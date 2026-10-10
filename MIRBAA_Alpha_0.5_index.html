@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>MIRBAA — Alpha 0.5</title>
+<style>
+:root{--gold:#d7ad62;--cream:#fff8e8;--felt:#075536;--felt2:#043d28;--wood:#6b4529;--ink:#101310}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#090b09;color:#fff7e6;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;overflow:hidden}
+.app{min-height:100dvh;padding:7px;background:linear-gradient(#0008,#0008),repeating-linear-gradient(90deg,#25170f 0 24px,#2c1c12 24px 48px)}
+.hud{height:58px;max-width:760px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 5px}
+.brand{display:flex;align-items:center;gap:8px}.brandAr{font-size:27px;font-weight:900;color:var(--gold)}.sub{font-size:10px;opacity:.68}
+.scores{display:flex;gap:6px}.score{min-width:58px;padding:5px 9px;border:1px solid #ffffff22;background:#111b15dd;border-radius:14px;text-align:center;font-size:11px}.score b{display:block;font-size:19px}
+.board{max-width:760px;height:calc(100dvh - 72px);min-height:580px;margin:auto;position:relative;overflow:hidden;border-radius:30px;background:linear-gradient(150deg,#3c271a,#754a2b 18%,#392418 82%,#21150f);padding:11px;box-shadow:0 18px 45px #000}
+.felt{height:100%;position:relative;overflow:hidden;border-radius:26px;border:3px solid #b88b4c88;background:radial-gradient(ellipse at 50% 40%,#0c7449 0,#075838 42%,#033421 100%);box-shadow:inset 0 0 60px #00180f,inset 0 0 0 8px #061d1588}
+.felt:after{content:"MIRBAA";position:absolute;left:50%;top:48%;transform:translate(-50%,-50%) rotate(-10deg);font-weight:900;font-size:44px;letter-spacing:7px;color:#ffffff07}
+.topline{position:absolute;z-index:12;top:9px;left:11px;right:11px;display:flex;justify-content:space-between;align-items:center}
+.contract{background:#081a12dd;border:1px solid #ffffff1b;border-radius:14px;padding:7px 10px;font-size:11px}.round{font-size:11px;opacity:.8}
+.player{position:absolute;z-index:8;text-align:center}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:auto;background:linear-gradient(#272b27,#101310);border:2px solid var(--gold);box-shadow:0 5px 12px #0009;font-weight:900}.active .avatar{box-shadow:0 0 0 3px #f2c96a55,0 0 20px #e6b954aa}
+.pname{font-size:12px;margin-top:2px;text-shadow:0 2px 3px #000}.partner{font-size:9px;opacity:.55}
+.north{top:47px;left:50%;transform:translateX(-50%)}.west{left:9px;top:43%;transform:translateY(-50%)}.east{right:9px;top:43%;transform:translateY(-50%)}.south{bottom:7px;left:50%;transform:translateX(-50%)}
+.minihand{display:flex;direction:ltr;justify-content:center;margin-top:3px}.back{width:20px;height:30px;margin-left:-10px;border:1px solid #e6c477;border-radius:4px;background:linear-gradient(135deg,#7b171b 25%,#d5ad55 25% 35%,#7b171b 35% 60%,#d5ad55 60% 70%,#7b171b 70%);box-shadow:0 2px 4px #0008}
+.center{position:absolute;z-index:6;left:50%;top:42%;transform:translate(-50%,-50%);width:72%;max-width:390px;text-align:center}
+.message{display:inline-block;background:#071810e8;border:1px solid #ffffff17;padding:8px 13px;border-radius:15px;font-size:12px;box-shadow:0 7px 16px #0007}
+.buy{width:66px;height:96px;margin:10px auto 8px;border-radius:9px;background:var(--cream);color:#151515;display:flex;align-items:center;justify-content:center;box-shadow:0 9px 18px #0009;border:1px solid #e5d6ad;font-size:22px;font-weight:900;direction:ltr}
+.actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:10px 15px;font-size:14px;font-weight:900;background:var(--cream);color:#151915;box-shadow:0 5px 10px #0006}.btn.gold{background:#d7aa53}.btn.dark{background:#071810;color:#fff;border:1px solid #ffffff18}
+.trick{height:154px;position:relative;margin-top:5px}.played{position:absolute;width:57px;height:82px;border-radius:8px;background:var(--cream);color:#111;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;box-shadow:0 8px 16px #0009;direction:ltr;animation:drop .2s ease-out}.t0{bottom:0;left:50%;transform:translateX(-50%)}.t1{left:8%;top:35px;transform:rotate(-7deg)}.t2{top:0;left:50%;transform:translateX(-50%)}.t3{right:8%;top:35px;transform:rotate(7deg)}
+@keyframes drop{from{opacity:0;scale:.75}to{opacity:1;scale:1}}
+.hand{position:absolute;z-index:11;left:50%;bottom:67px;transform:translateX(-50%);width:95%;display:flex;justify-content:center;direction:ltr}
+.card{width:58px;height:88px;margin-left:-12px;border-radius:9px;background:var(--cream);border:1px solid #ddcda6;color:#111;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;box-shadow:0 8px 15px #0009;transition:.15s;direction:ltr}.card:active{transform:translateY(-15px) scale(1.03)}.card.illegal{opacity:.42;filter:saturate(.35)}
+.red{color:#b51f28!important}
+.qaid{position:absolute;z-index:15;right:11px;bottom:13px;border:0;border-radius:15px;background:#a71f24;color:#fff;padding:10px 13px;font-weight:900;box-shadow:0 7px 15px #0009}
+.status{position:absolute;z-index:13;left:11px;bottom:14px;max-width:43%;font-size:10px;color:#dfd4bc;background:#06150fd9;border:1px solid #ffffff16;border-radius:12px;padding:7px 9px}
+.toast{position:absolute;z-index:30;left:50%;top:16%;transform:translateX(-50%);background:#101713ee;border:1px solid #d7ad6255;padding:9px 15px;border-radius:14px;font-size:12px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}
+@media(max-width:390px){.board{border-radius:22px;padding:8px}.felt{border-radius:19px}.center{width:76%}.card{width:52px;height:80px;margin-left:-11px}.hand{bottom:62px}.avatar{width:44px;height:44px}.brandAr{font-size:25px}}
+</style></head>
+<body><div class="app">
+<div class="hud"><div class="brand"><div class="brandAr">مِرباع</div><div><b>MIRBAA</b><div class="sub">Alpha 0.5 • Gameplay</div></div></div><div class="scores"><div class="score">لنا<b id="us">0</b></div><div class="score">لهم<b id="them">0</b></div></div></div>
+<div class="board"><div class="felt">
+<div class="topline"><div class="contract" id="contract">مرحلة الشراء</div><div class="round" id="round">الصكة 1 • الأكلة 1/8</div></div>
+<div class="player north" id="p2"><div class="avatar">ن</div><div class="pname">ناصر</div><div class="partner">شريكك</div><div class="minihand" id="h2"></div></div>
+<div class="player west" id="p1"><div class="avatar">س</div><div class="pname">سالم</div><div class="minihand" id="h1"></div></div>
+<div class="player east" id="p3"><div class="avatar">ف</div><div class="pname">فهد</div><div class="minihand" id="h3"></div></div>
+<div class="player south" id="p0"><div class="avatar">أنت</div><div class="pname">محمد</div></div>
+<div class="center"><div class="message" id="msg">ورقة الشراء • اختر نوع اللعب</div><div class="buy" id="buy"></div><div class="actions" id="actions"><button class="btn gold" onclick="buyMode('حكم')">حكم</button><button class="btn" onclick="buyMode('صن')">صن</button><button class="btn dark" onclick="passBuy()">بس</button></div><div class="trick" id="trick"></div></div>
+<div class="hand" id="hand"></div><div class="status" id="status">توزيع 5 أوراق وورقة شراء.</div><button class="qaid" onclick="qaid()">⚠ قيد</button><div class="toast" id="toast"></div>
+</div></div></div>
+<script>
+const suits=[['♠',0],['♥',1],['♦',1],['♣',0]],ranks=['7','8','9','10','J','Q','K','A'],names=['محمد','سالم','ناصر','فهد'];
+let deck=[],hands=[[],[],[],[]],up=null,mode=null,trump=null,turn=0,trick=[],trickNo=1,us=0,them=0,playing=false,passes=0,dealNo=1;
+const $=id=>document.getElementById(id);
+function shuffle(){deck=[];for(const [s,red] of suits)for(const r of ranks)deck.push({s,r,red});for(let i=deck.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}}
+function newDeal(){shuffle();hands=[[],[],[],[]];for(let n=0;n<5;n++)for(let p=0;p<4;p++)hands[p].push(deck.pop());up=deck.pop();mode=null;trump=null;turn=0;trick=[];trickNo=1;playing=false;passes=0;$('actions').style.display='flex';$('buy').style.display='flex';$('contract').textContent='مرحلة الشراء';$('msg').textContent='ورقة الشراء • اختر نوع اللعب';render();status('توزيع 5 أوراق لكل لاعب وكشف ورقة الشراء.')}
+function sym(c){return `<span class="${c.red?'red':''}">${c.s}<br>${c.r}</span>`}
+function backs(p){return hands[p].map(()=>'<i class="back"></i>').join('')}
+function legalIndices(p){if(!trick.length)return hands[p].map((_,i)=>i);let lead=trick[0].c.s,follow=hands[p].map((c,i)=>c.s===lead?i:-1).filter(i=>i>=0);return follow.length?follow:hands[p].map((_,i)=>i)}
+function render(){if(up)$('buy').innerHTML=sym(up);$('hand').innerHTML=hands[0].map((c,i)=>`<div class="card ${c.red?'red':''} ${playing&&turn===0&&!legalIndices(0).includes(i)?'illegal':''}" onclick="play(${i})">${c.s}<br>${c.r}</div>`).join('');$('h1').innerHTML=backs(1);$('h2').innerHTML=backs(2);$('h3').innerHTML=backs(3);$('us').textContent=us;$('them').textContent=them;$('round').textContent=`الصكة ${dealNo} • الأكلة ${Math.min(trickNo,8)}/8`;for(let p=0;p<4;p++)$('p'+p).classList.toggle('active',playing&&turn===p)}
+function passBuy(){passes++;if(passes===1){status('قلت: بس. بقية اللاعبين يمرون على الشراء…');$('actions').style.display='none';setTimeout(()=>{let choices=['حكم','صن'];buyMode(choices[Math.floor(Math.random()*2)],1+Math.floor(Math.random()*3))},700)}}
+function buyMode(x,buyer=0){mode=x;trump=x==='حكم'?up.s:null;$('contract').textContent=x+(trump?' '+trump:'');$('actions').style.display='none';for(let p=0;p<4;p++)while(hands[p].length<8)hands[p].push(deck.pop());playing=true;turn=buyer;$('buy').style.display='none';$('msg').textContent=`${x} • ${names[buyer]} يبدأ`;render();status(`اكتمل التوزيع إلى 8 أوراق. المشتري: ${names[buyer]}.`);if(turn!==0)setTimeout(bot,500)}
+function play(i){if(!playing||turn!==0)return;if(!legalIndices(0).includes(i)){flash('لازم تمشي على النوع الموجود');return}let c=hands[0].splice(i,1)[0];trick.push({p:0,c});turn=(turn+1)%4;draw();render();status('رميت الورقة.');setTimeout(bot,360)}
+function bot(){if(!playing||turn===0)return;if(trick.length===4){finish();return}let p=turn,legal=legalIndices(p),idx=legal[Math.floor(Math.random()*legal.length)],c=hands[p].splice(idx,1)[0];trick.push({p,c});turn=(turn+1)%4;draw();render();if(trick.length===4)setTimeout(finish,430);else if(turn!==0)setTimeout(bot,300);else status('دورك. اختر ورقة قانونية.')}
+function draw(){$('trick').innerHTML=trick.map(x=>`<div class="played t${x.p}">${sym(x.c)}</div>`).join('')}
+function strength(c){if(mode==='حكم'&&c.s===trump){let a={J:8,'9':7,A:6,'10':5,K:4,Q:3,'8':2,'7':1};return a[c.r]}let a={A:8,'10':7,K:6,Q:5,J:4,'9':3,'8':2,'7':1};return a[c.r]}
+function winner(){let lead=trick[0].c.s,best=trick[0];for(const x of trick.slice(1)){let b=best.c,c=x.c;if(mode==='حكم'){if(c.s===trump&&b.s!==trump){best=x;continue}if(b.s===trump&&c.s!==trump)continue}if(c.s===b.s&&strength(c)>strength(b))best=x;else if(b.s!==lead&&c.s===lead)best=x}return best.p}
+function finish(){if(trick.length<4)return;let w=winner();if(w%2===0)us+=2;else them+=2;status(`الأكلة لـ ${names[w]}.`);turn=w;render();setTimeout(()=>{trick=[];draw();trickNo++;if(hands.every(h=>h.length===0)){end();return}$('msg').textContent=`${mode} • الأكلة ${trickNo}`;render();if(turn!==0)setTimeout(bot,360);else status('أنت تبدأ الأكلة التالية.')},650)}
+function end(){playing=false;$('msg').textContent='انتهت الصكة';$('round').textContent=`الصكة ${dealNo} • اكتملت 8 أكلات`;status('اكتملت الصكة التجريبية. اضغط هنا لتوزيع جديد.');$('status').onclick=()=>{dealNo++;$('status').onclick=null;newDeal()}}
+function qaid(){flash('⚠ تم تسجيل القيد');status('طلب القيد محفوظ في هذه النسخة التجريبية؛ التحكيم الكامل سيأتي مع محرك القواعد.')}
+function status(t){$('status').textContent=t}
+function flash(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1300)}
+newDeal();
+</script></body></html>
